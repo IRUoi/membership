@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,6 +24,10 @@ public class MemberService {
     @Resource
     private MemberDao memberDao;
 
+
+    private EntityManagerFactory entityManagerFactory;
+
+    @Transactional
     public Member addMember(Member member){
         return memberDao.save(member);
     }

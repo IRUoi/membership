@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public interface MemberDao extends JpaRepository<Member, String> {
 
     @Query("select count(m.id) from  Member  m")
     int queryAllCount();
-
+    Member save(Member entity);
+//    Member save(Member member, EntityManager entityManager){return saveWithLock(entity);};
     List<Member> findByBirthday(LocalDate birthday);
 }
