@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.LockModeType;
 import java.util.List;
 
 /**
@@ -82,6 +85,25 @@ public class GiftService {
         }
         throw new IdNotFoundException();
     }
+
+//    @Resource
+//    EntityManagerFactory entityManagerFactory;
+//    @Transactional
+//    public Member addMember(Member member) {
+//        EntityManager entityManager = entityManagerFactory.createEntityManager();
+//        try {
+//            entityManager.getTransaction().begin();
+//            entityManager.persist(member);
+//            entityManager.lock(member, LockModeType.PESSIMISTIC_WRITE); // 加写锁
+//            entityManager.getTransaction().commit();
+//        } catch (Exception e) {
+//            entityManager.getTransaction().rollback();
+//            throw e;
+//        } finally {
+//            entityManager.close();
+//        }
+//        return memberDao.save(member);
+//    }
 
     public List<Gift> findAll() {
         return giftDao.findAll();

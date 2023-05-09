@@ -8,7 +8,7 @@ package cn.lger.exception;
 public class CommodityNumberNotEnoughException extends RuntimeException{
 
     public CommodityNumberNotEnoughException(){
-        super("商品数量不足");
+        super("菜品数量不足");
     }
 
 }

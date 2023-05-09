@@ -34,15 +34,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/assets/**"); //不过滤静态资源
-        super.configure(web);
-    }
-
-    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService) //注册自己定制的UserDetailsService
                 .passwordEncoder(encoder); // 配置密码加密器
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/assets/**"); //不过滤静态资源
+        super.configure(web);
     }
 
     @Override

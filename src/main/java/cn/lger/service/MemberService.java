@@ -1,6 +1,7 @@
 package cn.lger.service;
 
 import cn.lger.dao.MemberDao;
+import cn.lger.domain.Commodity;
 import cn.lger.domain.Member;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,14 @@ public class MemberService {
     @Transactional
     public Member addMember(Member member){
         return memberDao.save(member);
+    }
+
+    public void updateMember(Member member) {
+        if (memberDao.findMemberById(member.getId())!=null){
+            memberDao.save(member);
+            return;
+        }
+        throw new RuntimeException("会员中不存在当前的id:"+member.getId());
     }
 
     public Member findMemberById(String id){

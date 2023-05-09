@@ -41,7 +41,7 @@ public class CommodityService {
         Commodity commodity = commodityDao.findCommodityById(commodityId);
         //确保存在两个id的实体
         if (member != null && commodity != null) {
-            //确保商品数量充足
+            //确保菜品数量充足
             if (commodity.getCommodityNumber() - 1 < 0)
                 throw new CommodityNumberNotEnoughException();
             //是否余额支付
@@ -50,9 +50,9 @@ public class CommodityService {
                 if ((int) (member.getBalance() - commodity.getCommodityPrice()) >= 0) {
                     //重新设定余额
                     member.setBalance(member.getBalance() - commodity.getCommodityPrice());
-                    //商品数量少1
+                    //菜品数量少1
                     commodity.setCommodityNumber(commodity.getCommodityNumber() - 1);
-                    //商品积分增加
+                    //菜品积分增加
                     member.setMemberIntegral(member.getMemberIntegral()+commodity.getCommodityIntegral());
                     memberDao.save(member);
                     commodityDao.save(commodity);

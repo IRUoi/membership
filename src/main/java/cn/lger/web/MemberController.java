@@ -1,6 +1,7 @@
 package cn.lger.web;
 
 import cn.lger.dao.MemberGradeDao;
+import cn.lger.domain.Commodity;
 import cn.lger.domain.Member;
 import cn.lger.domain.MemberGrade;
 import cn.lger.exception.IdNotFoundException;
@@ -88,6 +89,29 @@ public class MemberController {
 
         model.put("member", member);
         return "addMemberSuccess";
+    }
+
+
+    @PostMapping("/updateMember")
+    @ResponseBody
+    public String updateMember(Member member){
+        try{
+            Member mem = memberService.findMemberById(member.getId());
+            member.setMemberGrade(mem.getMemberGrade());
+            member.setState("正常");
+            member.setBalance(mem.getBalance());
+            member.setMemberIntegral(mem.getMemberIntegral());
+            member.setIconPath(mem.getIconPath());
+            member.setSex(mem.getSex());
+//            member.setPassword(encoder.encode(member.getPassword()));
+//        System.out.println(member);
+//            member = memberService.addMember(member);
+            memberService.updateMember(member);
+        } catch (Exception e){
+            e.printStackTrace();
+            return "error";
+        }
+        return "修改成功";
     }
 
     @GetMapping("/getGrade")

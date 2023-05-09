@@ -117,21 +117,21 @@
                         </li>
                     </ul>
                 </li>
-                <!--商品消费-->
+                <!--菜品消费-->
                 <li class="active">
-                    <a href="javascript:void(0)" class="active-menu waves-effect waves-dark"><i class="fa fa-yen"></i>商品消费<span
+                    <a href="javascript:void(0)" class="active-menu waves-effect waves-dark"><i class="fa fa-yen"></i>菜品消费<span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse in"  aria-expanded="true">
                         <li>
-                            <a class="active-menu" th:href="@{/addCommodity}">添加商品</a>
+                            <a class="active-menu" th:href="@{/addCommodity}">添加菜品</a>
                         </li>
 
                         <li>
-                            <a th:href="@{/modifyCommodity}">商品修改</a>
+                            <a th:href="@{/modifyCommodity}">菜品修改</a>
                         </li>
 
                         <li>
-                            <a th:href="@{/purchaseCommodity}">商品购买</a>
+                            <a th:href="@{/purchaseCommodity}">菜品购买</a>
                         </li>
 
                         <li>
@@ -159,7 +159,7 @@
         <!--内容主题-->
         <div class="header">
             <h1 class="page-header">
-                添加商品
+                添加菜品
             </h1>
         </div>
         <div id="page-inner">
@@ -169,27 +169,27 @@
                     <div class="card-content">
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="商品名" id="commodityName" type="text" class="validate" name="commodityName" required/>
-                                <label for="commodityName">商品名</label>
+                                <input placeholder="菜品名" id="commodityName" type="text" class="validate" name="commodityName" required/>
+                                <label for="commodityName">菜品名</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="commodityIntegral" onblur="confirmNumAndIntegral()" name="commodityIntegral" type="text" class="validate" placeholder="购买后可获取商品积分" required/>
-                                <label for="commodityIntegral">购买后可获取商品积分</label>
+                                <input id="commodityIntegral" onblur="confirmNumAndIntegral()" name="commodityIntegral" type="text" class="validate" placeholder="购买后可获取菜品积分" required/>
+                                <label for="commodityIntegral">购买后可获取菜品积分</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="商品数量" onblur="confirmNumAndIntegral()" id="commodityNumber" type="text" class="validate" name="commodityNumber" required/>
-                                <label for="commodityNumber">商品数量</label>
+                                <input placeholder="菜品数量" onblur="confirmNumAndIntegral()" id="commodityNumber" type="text" class="validate" name="commodityNumber" required/>
+                                <label for="commodityNumber">菜品数量</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="commodityPrice" onchange="confirmPrice()" name="commodityPrice" type="text" class="validate" placeholder="商品价格" required/>
-                                <label for="commodityPrice">商品价格</label>
+                                <input id="commodityPrice" onchange="confirmPrice()" name="commodityPrice" type="text" class="validate" placeholder="菜品价格" required/>
+                                <label for="commodityPrice">菜品价格</label>
                             </div>
                         </div>
                     </div>
                     <div class="card-action">
-                        <a href="javascript:void(0)" onclick="addCommodity()">添加商品</a>
+                        <a href="javascript:void(0)" onclick="addCommodity()">添加菜品</a>
                     </div>
                 <!--</div>-->
             </div>
@@ -262,7 +262,7 @@
     
     function addCommodity() {
         if (confirmPrice() && confirmNumAndIntegral())
-        if (confirm('确认添加该商品吗？')) {
+        if (confirm('确认添加该菜品吗？')) {
             var obj1= document.getElementById('commodityNumber').value;
             var obj2 = document.getElementById('commodityIntegral').value;
             var obj3 = document.getElementById('commodityPrice').value;

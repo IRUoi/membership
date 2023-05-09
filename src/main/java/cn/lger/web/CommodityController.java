@@ -54,13 +54,13 @@ public class CommodityController {
             commodityService.purchaseCommodity(memberId, commodityId, balance);
         } catch (CommodityNumberNotEnoughException e){
             e.printStackTrace();
-            return "商品数量不足";
+            return "菜品数量不足";
         } catch (BalanceNotEnoughException e){
             e.printStackTrace();
             return "会员余额不足";
         } catch (IdNotFoundException e){
             e.printStackTrace();
-            return "会员账号或商品账号不存在";
+            return "会员账号或菜品账号不存在";
         }
         return "success";
     }
@@ -79,7 +79,7 @@ public class CommodityController {
             e.printStackTrace();
             return "error";
         }
-        return "success";
+        return "修改成功";
     }
 
     @PostMapping("/queryAllCommodity")

@@ -116,21 +116,21 @@
                         </li>
                     </ul>
                 </li>
-                <!--商品消费-->
+                <!--菜品消费-->
                 <li>
-                    <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-yen"></i>商品消费<span
+                    <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-yen"></i>菜品消费<span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a th:href="@{/addCommodity}">添加商品</a>
+                            <a th:href="@{/addCommodity}">添加菜品</a>
                         </li>
 
                         <li>
-                            <a th:href="@{/modifyCommodity}">商品修改</a>
+                            <a th:href="@{/modifyCommodity}">菜品修改</a>
                         </li>
 
                         <li>
-                            <a th:href="@{/purchaseCommodity}">商品购买</a>
+                            <a th:href="@{/purchaseCommodity}">菜品购买</a>
                         </li>
 
                         <li>
@@ -218,6 +218,10 @@
                                         colspan="1" aria-label="CSS grade: activate to sort column ascending"
                                     >会员状态
                                     </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                    >操作
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody id="tableContent">
@@ -244,6 +248,50 @@
 
     </div>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="myModalLabel">修改会员信息</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="display: none">
+                    <label for="memberId">会员id</label>
+                    <input type="text" class="form-control" id="memberId" placeholder="会员id">
+                </div>
+                <div class="form-group">
+                    <label for="memberName">会员名称</label>
+                    <input type="text" class="form-control" id="memberName" placeholder="会员名称">
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="会员密码" id="password" type="password" class="validate" name="password" onchange="confirmPassword()" required/>
+                    <label for="password">会员密码</label>
+                </div>
+                <div>
+                    <input id="birthday" name="birthday" type="date" class="validate" placeholder="会员生日" required/>
+                    <label for="birthday">会员生日</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="phone" name="phone" type="tel" class="validate" placeholder="联系电话" required/>
+                    <label for="phone">联系电话</label>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="email" name="email" type="email" class="validate" placeholder="邮箱" required/>
+                        <label for="email">邮箱</label>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn waves-effect waves-light" onclick="updataMember()">保存修改</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- JS Scripts-->
 <!-- jQuery Js -->
@@ -268,6 +316,17 @@
 <script>
     var totalPages = 1;
 
+    var info;
+    function openModelWindow(btn) {
+        info = $(btn).parent().parent();
+
+        $('#memberId').val($(info.children()[0]).text());
+        $('#memberName').val($(info.children()[1]).text());
+        $('#password').val($(info.children()[2]).text());
+        // $('#phone').val($(info.children()[3]).text());
+        // $('#email').val($(info.children()[4]).text());
+        $('#myModal').modal('show');
+    }
     function updateData(pageNum) {
         if (pageNum < 1 || pageNum > totalPages)
             return;
@@ -301,7 +360,9 @@
                             '<td>' + content.balance + '</td>' +
                             '<td>' + content.memberGrade.gradeName + '</td>' +
                             '<td>' + content.sex + '</td>' +
-                            '<td>' + content.state + '</td>'
+                            '<td>' + content.state + '</td>'+
+                            '<td><button class="waves-effect waves-light btn" data-toggle="modal" data-target="#myModal" onclick="openModelWindow(this)">修改</button></td>' +
+
                             + '</tr>';
                     }
                 });
@@ -335,6 +396,38 @@
     }
 
     updateData(1);
+
+    function updataMember() {
+        var memberId = $('#memberId').val();
+        var memberName = $('#memberName').val();
+        var password = $('#password').val();
+        var birthday  =$('#birthday').val();
+        var phone = $('#phone').val();
+        var email = $('#email').val();
+        $.ajax({
+            url: '/updateMember',
+            type: 'POST',
+            data: {id: memberId,memberName:memberName,password:password,birthday:birthday, phone:phone, email:email},
+            success: function (data) {
+                var modal = $('#myModal');
+                modal.attr('class', 'modal fade');
+                modal.attr('aria-hidden','true');
+                modal.attr('style','display:none');
+                $('.modal-backdrop')[0].remove();
+                $('body').attr('class', '').attr('style', '');
+
+                if (data === 'success') {
+                    $(info.children()[1]).text(memberName);
+                    $(info.children()[2]).text(password);
+                    $(info.children()[2]).text(birthday);
+
+                    $(info.children()[3]).text(phone);
+                    $(info.children()[4]).text(email);
+                }
+                alert(data);
+            }
+        })
+    }
 
 </script>
 

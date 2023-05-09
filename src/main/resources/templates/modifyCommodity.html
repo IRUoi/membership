@@ -125,21 +125,21 @@
                         </li>
                     </ul>
                 </li>
-                <!--商品消费-->
+                <!--菜品消费-->
                 <li class="active">
-                    <a href="javascript:void(0)" class="active-menu waves-effect waves-dark"><i class="fa fa-yen"></i>商品消费<span
+                    <a href="javascript:void(0)" class="active-menu waves-effect waves-dark"><i class="fa fa-yen"></i>菜品消费<span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse in" aria-expanded="true">
                         <li>
-                            <a th:href="@{/addCommodity}">添加商品</a>
+                            <a th:href="@{/addCommodity}">添加菜品</a>
                         </li>
 
                         <li>
-                            <a class="active-menu" th:href="@{/modifyCommodity}">商品修改</a>
+                            <a class="active-menu" th:href="@{/modifyCommodity}">菜品修改</a>
                         </li>
 
                         <li>
-                            <a th:href="@{/purchaseCommodity}">商品购买</a>
+                            <a th:href="@{/purchaseCommodity}">菜品购买</a>
                         </li>
 
                         <li>
@@ -167,7 +167,7 @@
         <!--内容主题-->
         <div class="header">
             <h1 class="page-header">
-                商品修改
+                菜品修改
             </h1>
         </div>
         <div id="page-inner">
@@ -182,15 +182,15 @@
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1"
                                         colspan="1" aria-label="Rendering engine: activate to sort column ascending"
-                                        aria-sort="ascending">商品名称
+                                        aria-sort="ascending">菜品名称
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
                                         colspan="1" aria-label="Browser: activate to sort column ascending"
-                                    >商品数量
+                                    >菜品数量
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
                                         colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                    >商品价格
+                                    >菜品价格
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
                                         colspan="1" aria-label="Platform(s): activate to sort column ascending"
@@ -236,28 +236,28 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title" id="myModalLabel">修改会员类别</h5>
+                <h5 class="modal-title" id="myModalLabel">修改菜品信息</h5>
             </div>
             <div class="modal-body">
                 <div class="form-group" style="display: none">
-                    <label for="commodityId">商品id</label>
+                    <label for="commodityId">菜品id</label>
                     <input type="text" class="form-control" id="commodityId" placeholder="会员等级id">
                 </div>
                 <div class="form-group">
-                    <label for="commodityName">商品名称</label>
-                    <input type="text" class="form-control" id="commodityName" placeholder="商品名称">
+                    <label for="commodityName">菜品名称</label>
+                    <input type="text" class="form-control" id="commodityName" placeholder="菜品名称">
                 </div>
                 <div class="form-group">
-                    <label for="commodityNumber">商品数量</label>
-                    <input type="text" class="form-control" id="commodityNumber" placeholder="商品数量">
+                    <label for="commodityNumber">菜品数量</label>
+                    <input type="text" class="form-control" id="commodityNumber" placeholder="菜品数量">
                 </div>
                 <div class="form-group">
-                    <label for="commodityPrice">商品价格</label>
-                    <input type="text" class="form-control" id="commodityPrice" placeholder="商品价格">
+                    <label for="commodityPrice">菜品价格</label>
+                    <input type="text" class="form-control" id="commodityPrice" placeholder="菜品价格">
                 </div>
                 <div class="form-group">
                     <label for="commodityIntegral">可得积分</label>
-                    <input type="text" class="form-control" id="commodityIntegral" placeholder="商品数量">
+                    <input type="text" class="form-control" id="commodityIntegral" placeholder="菜品数量">
                 </div>
 
             </div>
